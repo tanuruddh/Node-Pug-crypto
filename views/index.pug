@@ -1,0 +1,128 @@
+html
+  head
+    title Hodlinfo
+    link(rel='stylesheet', href='css//styles.css')
+    link(rel="shortcut icon" href="img/favicon.ico")
+  body
+    header
+      nav
+        .heading
+          img(src="https://hodlinfo.com/static/media/HODLINFO.8f78fc06.png", alt="")
+        .mid-portion
+          .select-ele
+            select.select(name="first", id="first")
+              option(value="inr") INR
+          .select-ele
+            select.select(name="second", id="second")
+              option(value="btc") BTC
+              option(value="eth") ETH
+              option(value="usdt") USDT
+              option(value="xrp") XRP
+              option(value="trx") TRX
+              option(value="dash") DASH
+              option(value="zec") ZEC
+              option(value="xem") XEM
+          .select-ele
+            button.btn-buy Buy BTC
+        .right-header
+          .progress-bar
+            span 55
+          button.telegram_btn Connect Telegram
+          label.switch
+            input(type="checkbox", id="toggleBtn" checked)
+            span.slider
+    main
+      .stats
+        .extra-div
+          .stats_div
+            .percentage 0.1 %
+            .time 5 Mins
+          .stats_div
+            .percentage 0. 96 %
+            .time 1 Hour
+        .stats_div
+          p Best Price To Trade
+          span R 26,56,110
+          p Average BTC/INR net price including commision
+        .extra-div
+          .stats_div
+            .percentage 2.73 %
+            .time 1 Day
+          .stats_div
+            .percentage 7.51 %
+            .time 7 Days
+      .lists
+        table
+          thead
+            tr.tr
+              th #
+              th PlateForm
+              th Last Trade Price
+              th Buy/Sell Price
+              th Volume
+              th Base_Units
+          tbody
+            each crypto, index in cryptos
+              tr
+                td= index + 1
+                td= crypto.name
+                td= crypto.last
+                td= crypto.buy + ' / ' + crypto.sell
+                td= crypto.volume
+                td= crypto.base_unit
+    hr
+    footer
+      p Copyright © 2019 HodlInfo.com
+      p Support
+  script.
+      // JavaScript to handle toggle functionality
+      const toggleBtn = document.getElementById('toggleBtn');
+      const select = document.getElementsByClassName('select');
+      const btnBuy = document.getElementsByClassName('btn-buy');
+      const progressBar = document.getElementsByClassName('progress-bar');
+      const body = document.getElementsByTagName("BODY")[0];
+      const spanTag = document.querySelector('.stats_div span');
+      const footer = document.querySelector('footer');
+      const tr = document.querySelectorAll('tr');
+
+
+      toggleBtn.addEventListener('change', function() {
+        if(this.checked) {
+          // Toggle is ON
+          console.log('Toggle is ON');
+          body.style.backgroundColor = "#191d28";
+          select[0].style.backgroundColor = "#2e3241";
+          select[0].style.color = "#fff";
+          select[1].style.backgroundColor = "#2e3241";
+          select[1].style.color = "#fff";
+          btnBuy[0].style.backgroundColor = "#2e3241";
+          btnBuy[0].style.color = "#fff";
+          progressBar[0].style.backgroundColor = "#2e3241";
+          tr.forEach(function(trElement) {trElement.style.backgroundColor = "#2e3241";
+          trElement.style.color = "#fff"
+          })
+          tr[0].style.backgroundColor="#191d28";
+          tr[0].style.color="#2e3241";
+          spanTag.style.color="#fff"
+          footer.style.color="#fff"
+        } else {
+          // Toggle is OFF
+          console.log('Toggle is OFF');
+          body.style.backgroundColor = "#fff";
+          select[0].style.backgroundColor = "#E1D9D1";
+          select[0].style.color = "black";
+          select[1].style.backgroundColor = "#E1D9D1";
+          select[1].style.color = "black";
+          btnBuy[0].style.backgroundColor = "#E1D9D1";
+          btnBuy[0].style.color = "black";
+          tr.forEach(function(trElement) {trElement.style.backgroundColor = "#E1D9D1";
+          trElement.style.color = "black"
+          })
+          tr[0].style.backgroundColor="#fff";
+          progressBar[0].style.backgroundColor = "#E1D9D1";
+          spanTag.style.color="black"
+          footer.style.color="black"
+
+
+        }
+      });
