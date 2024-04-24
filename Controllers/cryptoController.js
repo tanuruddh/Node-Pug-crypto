@@ -18,7 +18,9 @@ const fetchTenResult = async (req, res, next) => {
 
         await Crypto.deleteMany({});
         await Crypto.insertMany(top10Tickers);
-
+        if (req.url === '/getStoredData') {
+            return next();
+        }
         res.status(200).send({ top10Tickers });
     } catch (error) {
         console.error('Error fetching and storing data:', error);

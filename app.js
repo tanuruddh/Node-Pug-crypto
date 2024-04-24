@@ -16,7 +16,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(cookieParser());
 
 app.get('/fetchAndStoreData', fetchTenResult)
-app.get('/getStoredData', getStoreData);
+app.get('/getStoredData', fetchTenResult, getStoreData);
 
 app.all('*', (req, res, next) => {
 
